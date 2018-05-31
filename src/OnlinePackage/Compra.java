@@ -10,27 +10,39 @@ package OnlinePackage;
  * @author Anorak
  */
 public class Compra {
-    private static final int valorUF = 27075;
+    private static final int dia28UF = 27078;
     private int monto;
     private String nombre;
     private String rut;
     private String correo;
     private String medioPago;
     private int promocion = 0;
-    public Compra(int monto, String nombre, String rut, String correo, String medioPago) {
+    private int flagPromocion = 0;
+    public Compra(int monto, String nombre, String rut, String correo, String medioPago, int flag) {
         this.monto = monto;
         this.nombre = nombre;
         this.rut = rut;
         this.correo = correo;
         this.medioPago = medioPago;
-        this.Descuento();
+        if(flag == 1){
+            this.flagPromocion = flag;
+            this.AplicarDescuento();
+        }        
     }
 
-    public final void Descuento(){      
-      if(this.getMonto() > (valorUF * 100) && this.getMonto() < (valorUF * 500)){
+    public int getFlagPromocion() {
+        return flagPromocion;
+    }
+
+    public void setFlagPromocion(int flagPromocion) {
+        this.flagPromocion = flagPromocion;
+    }
+    
+    public final void AplicarDescuento(){      
+      if(this.getMonto() > (dia28UF * 100) && this.getMonto() < (dia28UF * 500)){
         this.setPromocion((this.getMonto() * 10) / 100);
       }
-      else if(this.getMonto() > (valorUF * 500)){
+      else if(this.getMonto() > (dia28UF * 500)){
         this.setPromocion((this.getMonto() * 20) / 100);
       }
       this.setMonto(this.getMonto() - this.getPromocion());
